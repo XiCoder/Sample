@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingStart="15dp"
+    android:paddingTop="15dp"
+    android:paddingEnd="15dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="35dp"
+        android:alpha="0.3"
+        android:letterSpacing="0.05"
+        android:rotation="15"
+        android:text="江苏省卫生健康委员会"
+        android:textColor="@color/title_color"
+        android:textSize="22sp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名："
+                android:textSize="@dimen/text_size"
+                android:textColor="@color/title_color" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:textSize="@dimen/text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="黄田园"
+                android:textColor="@color/content_color" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:textSize="@dimen/text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="采样点："
+                android:textColor="@color/title_color" />
+
+            <TextView
+                android:textSize="@dimen/text_size"
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="黄田园"
+                android:textColor="@color/content_color" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:textSize="@dimen/text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="采样时间："
+                android:textColor="@color/title_color" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="黄田园"
+                android:textSize="@dimen/text_size"
+                android:textColor="@color/content_color" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="检测结果："
+                android:textSize="@dimen/text_size"
+                android:textColor="@color/title_color" />
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="阴性"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>
