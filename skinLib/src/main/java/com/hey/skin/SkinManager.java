@@ -1,6 +1,7 @@
 package com.hey.skin;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Observable;
+import java.util.WeakHashMap;
 import java.util.concurrent.Executor;
 
 public class SkinManager extends Observable {
@@ -26,18 +28,18 @@ public class SkinManager extends Observable {
 
     private Executor executor;
 
-
+    private WeakHashMap<Context, SkinViewInflater> viewInflaterMap = new WeakHashMap<>();
 
     private SkinManager(Application application) {
         this.application = application;
         //记录当前使用的皮肤
-        copyAssetAndWrite(application,"app-debug.apk");
+        copyAssetAndWrite(application, "app-debug.apk");
         SkinPreference.init(application);
         SkinResources.init(application);
-        skinLifeCycleCallback = new SkinLifeCycleCallback(this);
+        skinLifeCycleCallback = new SkinLifeCycleCallback();
         application.registerActivityLifecycleCallbacks(skinLifeCycleCallback);
         // 加载上次使用的皮肤
-        loadSkin(application.getCacheDir()+"/app-debug.apk");
+        loadSkin(application.getCacheDir() + "/app-debug.apk");
     }
 
     public void loadSkin(String skinPath) {
@@ -70,10 +72,8 @@ public class SkinManager extends Observable {
     }
 
     public static SkinManager getInstance() {
-
         return instance;
     }
-
 
     public static void init(Application application) {
         if (instance == null) {
@@ -85,12 +85,28 @@ public class SkinManager extends Observable {
         }
     }
 
+    public void putInflater(Context context, SkinViewInflater viewInflater) {
+        if (!viewInflaterMap.containsKey(context)) {
+            viewInflaterMap.put(context, viewInflater);
+            addObserver(viewInflater);
+        }
+    }
+
+    public void removeInflater(Context context) {
+        SkinViewInflater viewInflater = viewInflaterMap.remove(context);
+        if (viewInflater != null) {
+            viewInflater.release();
+        }
+        deleteObserver(viewInflater);
+    }
+
+
     /**
      * 将asset文件写入缓存
      */
     private boolean copyAssetAndWrite(Application application, String fileName) {
         try {
-            Log.e("skin","copy skin apk start");
+            Log.e("skin", "copy skin apk start");
             File cacheDir = application.getCacheDir();
             if (!cacheDir.exists()) {
                 cacheDir.mkdirs();
@@ -116,7 +132,7 @@ public class SkinManager extends Observable {
             fos.flush();
             is.close();
             fos.close();
-            Log.e("skin","copy skin apk success");
+            Log.e("skin", "copy skin apk success");
             return true;
         } catch (IOException e) {
             e.printStackTrace();

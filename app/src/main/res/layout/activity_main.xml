@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_divider"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -27,71 +27,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="核酸检测结果查询"
+            android:text="换肤测试"
             android:textColor="@color/black" />
-
 
     </LinearLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_top_bg"
-        android:paddingStart="15dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="45dp">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="核酸检测结果"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="身份证号：410182********0019"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/title"
-            app:layout_constraintTop_toBottomOf="@id/title" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/report_list"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="我是文字"
+        android:textColor="@color/content_color" />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="更多数据"
-        android:textColor="@color/content_color"
-        android:textSize="10sp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:drawablePadding="5dp"
-        android:drawableStart="@drawable/ic_down"
-        />
+        android:text="我是Button"
+        android:textColor="@color/white" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_loadSkin"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
-        android:text="数据来源：江苏省卫生健康委员会，反映近30天内核酸检测情况，数据在不断汇聚和完善中。" />
+        android:text="加载皮肤" />
+
+    <Button
+        android:id="@+id/btn_restSkin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重置皮肤" />
 </LinearLayout>

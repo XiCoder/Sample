@@ -1,11 +1,12 @@
 package com.hey.report
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gyf.immersionbar.ImmersionBar
+import com.hey.skin.SkinManager
+import com.hey.skin.SkinPreference
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -23,13 +24,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initStatusBar()
         setContentView(R.layout.activity_main)
-        reportList = findViewById(R.id.report_list)
-        reportList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
-        dividerItemDecoration.setDrawable(getDrawable(R.drawable.item_divider)!!)
-        reportList.addItemDecoration(dividerItemDecoration)
-        val adapter = ReportAdapter(makeReport())
-        reportList.adapter = adapter
+        findViewById<Button>(R.id.btn_loadSkin).setOnClickListener {
+            SkinManager.getInstance().loadSkin(SkinPreference.getInstance().skinPath);
+        }
     }
 
     private fun initStatusBar() {
@@ -41,35 +38,6 @@ class MainActivity : AppCompatActivity() {
             .fitsSystemWindows(true)
             .statusBarDarkFont(true)
             .init()
-    }
-
-    private fun makeReport(): List<ReportData> {
-        val data = ArrayList<ReportData>()
-        data.add(
-            ReportData(
-                "黄田园",
-                "托乐嘉售楼处",
-                dateTimeFormat.format(date.minusDays(1).plusHours(2)),
-                "阴性"
-            )
-        )
-        data.add(
-            ReportData(
-                "黄田园",
-                "托乐嘉售楼处",
-                dateTimeFormat.format(date.minusDays(3).minusMinutes(30)),
-                "阴性"
-            )
-        )
-        data.add(
-            ReportData(
-                "黄田园",
-                "托乐嘉售楼处",
-                dateTimeFormat.format(date.minusDays(5).minusMinutes(30).plusHours(1)),
-                "阴性"
-            )
-        )
-        return data
     }
 
 

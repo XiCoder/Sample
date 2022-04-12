@@ -65,7 +65,10 @@ public class SkinAttribute {
         for (SkinView mSkinView : mSkinViews) {
             mSkinView.applySkin();
         }
+    }
 
+    public void release() {
+        mSkinViews.clear();
     }
 
 
